@@ -1,13 +1,14 @@
 
 exports.clozeCard = function(text, cloze) {
   this.text = text;
-  this.cloze = cloze;
-  var isItInIt = text.indexOf(cloze);
-  if (isItInIt === -1){
-  var cardFront = text.replace(cloze, "...");
-  console.log(cardFront);
-  var cardBack = cloze;
-  console.log(cardBack);
-};
+  this.answer = cloze;
+  if (this.text.includes(this.answer)) {
+    var cardFront = this.text.replace(cloze, "...");
+    console.log("Question is: " + cardFront);
+    console.log("THe answer is: " + this.answer);
+  }
+  else {
+    console.log("Question not formatted properly.");
+  }
 
 };
