@@ -41,3 +41,9 @@
   min-height: 500px;
   background-size: cover;
 }
+.hide {
+  display:none;
+}
+label {
+  color:white;
+}
