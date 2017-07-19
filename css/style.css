@@ -46,4 +46,17 @@
 }
 label {
   color:white;
+  text-align: center;
+}
+#displayCardsBox h3 {
+  color: white;
+  text-align: center;
+}
+#basicCardSelector {
+  margin-left: 34%;
+  margin-right: 10%;
+  margin-top: 5%;
+}
+#clozeCardSelector {
+  margin-top: 5%;
 }

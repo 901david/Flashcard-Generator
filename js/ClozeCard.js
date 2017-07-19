@@ -1,11 +1,11 @@
 
 exports.clozeCard = function(text, cloze) {
-  this.text = text;
-  this.answer = cloze;
-  if (this.text.includes(this.answer)) {
-    var cardFront = this.text.replace(this.answer, "...");
-    console.log("Question is: " + cardFront);
-    console.log("THe answer is: " + cardFront.replace("...", this.answer));
+  this.fullAnswer = text;
+  this.removedPortion = cloze;
+  if (this.fullAnswer.includes(this.removedPortion)) {
+    this.displayText = this.fullAnswer.replace(this.removedPortion, "...");
+    console.log("Question is: " + this.displayText);
+    console.log("The answer is: " + this.displayText.replace("...", this.removedPortion));
 
   }
   else {
