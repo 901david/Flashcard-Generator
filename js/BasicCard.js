@@ -1,4 +1,4 @@
-exports.basicCard = function (front, back) {
+exports.BasicCard = function (front, back) {
   this.front = front;
   this.back = back;
   console.log (this.front);

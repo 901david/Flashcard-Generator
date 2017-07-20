@@ -1,5 +1,5 @@
 
-exports.clozeCard = function(text, cloze) {
+exports.ClozeCard = function(text, cloze) {
   this.fullAnswer = text;
   this.removedPortion = cloze;
   if (this.fullAnswer.includes(this.removedPortion)) {

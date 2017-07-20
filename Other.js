@@ -1,31 +1,31 @@
-const http = require('http')
-const port = 8000
-
-const requestHandler = (request, response) => {
-  console.log(request)
-  response.end('This is a single response server.  Above, you can write, response.write(\'write something here...\');')
-}
-
-const server = http.createServer(requestHandler)
-
-server.listen(port, (err) => {
-  if (err) {
-    return console.log('something bad happened', err)
-  }
-
-  console.log(`server is listening on ${port}`)
-});
+// const http = require('http')
+// const port = 8000
+//
+// const requestHandler = (request, response) => {
+//   console.log(request)
+//   response.end('This is a single response server.  Above, you can write, response.write(\'write something here...\');')
+// }
+//
+// const server = http.createServer(requestHandler)
+//
+// server.listen(port, (err) => {
+//   if (err) {
+//     return console.log('something bad happened', err)
+//   }
+//
+//   console.log(`server is listening on ${port}`)
+// });
 
 var variableNumber = 0;
 var cardCreatedArray = [];
 var currentVariableName;
-var currentIndex = variableNumber;
+var currentIndex = variableNumber - 1;
 
 // Gives us a continuing variable scheme
-function whatVariableToUse () {
+function whatVariableToUse (frontArg, backArg) {
   variableNumber++;
-  currentVariableName = "card" + variableNumber;
-  cardCreatedArray.push(currentVariableNa);
+  currentVariableName = { front: frontArg, back: backArg };
+  cardCreatedArray.push(currentVariableName);
   console.log(cardCreatedArray);
 
 
@@ -33,7 +33,6 @@ function whatVariableToUse () {
 
 // Determines what type of card to create based on which button is clicked.
 function grabDataAndRun (){
-  variableName = currentVariableName;
   $(".clickHerePlease").click(function() {
     console.log("You clicked me");
     let questionArg = $("#frontCardData").val();
@@ -42,15 +41,13 @@ function grabDataAndRun (){
     console.log(dataArg);
     if(dataArg === "basic") {
       console.log("You clicked me");
-      whatVariableToUse();
-
-      // HOw do I actually make this the value of currentVariableName
-      // cardCreatedArray[currentIndex] = basicData.basicCard("'" + questionArg + "'", "'" + answerArg + "'");
+      whatVariableToUse(questionArg, answerArg);
         console.log(cardCreatedArray);
     }
     else if (dataArg === "cloze") {
       console.log("You clicked me");
-      whatVariableToUse();
+      whatVariableToUse(questionArg, answerArg);
+      console.log(cardCreatedArray);
     }
     else {
       console.log("This means something went fatally wrong.  Error.");

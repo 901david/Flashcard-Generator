@@ -22,7 +22,7 @@ function createBasicQ (basicFront, basicBack) {
 
     }
     else {
-      var randomQ = basicData.basicCard(basicFront, basicBack);
+      var randomQ =new basicData.BasicCard(basicFront, basicBack);
     }
 };
 function createCloze (clozeFront, clozeBack) {
@@ -31,8 +31,8 @@ function createCloze (clozeFront, clozeBack) {
 
   }
   else {
-    var randomQ2 = clozeData.clozeCard(clozeFront, clozeBack);
+    var randomQ2 =new clozeData.ClozeCard(clozeFront, clozeBack);
   }
 };
 // createBasicQ(argOne, argTwo);
-createCloze(argOne, argTwo);
+createBasicQ(argOne, argTwo);
