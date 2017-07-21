@@ -1,5 +1,3 @@
-
-
 var clozeData = require("./ClozeCard.js");
 var basicData = require("./BasicCard.js");
 var inquirer = require("inquirer");
@@ -15,6 +13,8 @@ function createBasicQ (basicFront, basicBack) {
   }
   else {
     var randomQ =new basicData.BasicCard(basicFront, basicBack);
+    randomQ.displayCardConsole();
+
   }
 };
 function createCloze (clozeFront, clozeBack) {
@@ -24,6 +24,7 @@ function createCloze (clozeFront, clozeBack) {
   }
   else {
     var randomQ2 =new clozeData.ClozeCard(clozeFront, clozeBack);
+
   }
 };
 inquirer.prompt([
@@ -32,11 +33,11 @@ inquirer.prompt([
     message: "How many cards total do you want to make?"
   }]).then(function(carNumObj) {
     recNum = carNumObj.cardNumber;
-    console.log(carNumObj);
+
     function askQuestion () {
 
       if (count < recNum) {
-        console.log("Count: " + count + " " + "RecNUm: " + recNum);
+
       inquirer.prompt([
         {
           type: "list",
@@ -45,7 +46,7 @@ inquirer.prompt([
           choices: ["Basic Card", "Cloze Card"]
         }]).then(function(carTypeObj) {
           cardType = carTypeObj.type;
-          console.log(carTypeObj);
+
           if (cardType === "Cloze Card"){
             inquirer.prompt([
               {
