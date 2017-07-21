@@ -3,12 +3,11 @@ exports.ClozeCard = function(text, cloze) {
   this.fullAnswer = text;
   this.removedPortion = cloze;
   this.displayCardConsole = function () {
-
+    var winnerText = this.fullAnswer;
     console.log (this.displayText);
     var count = 0;
     var secsLeft = 8;
     var displayNumber = 8;
-
     function timerFun () {
 
       if (count < secsLeft) {
@@ -19,12 +18,13 @@ exports.ClozeCard = function(text, cloze) {
       }
       else {
         console.log("Time's Up");
-        console.log (this.fullAnswer);
-      }
+        console.log (winnerText)
+
+        }
+
     };
     timerFun();
   };
   this.displayText = this.fullAnswer.replace(this.removedPortion, "...");
-
 
 };

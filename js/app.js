@@ -1,30 +1,39 @@
 var clozeData = require("./ClozeCard.js");
 var basicData = require("./BasicCard.js");
 var inquirer = require("inquirer");
-var argOne = process.argv[2];
-var argTwo = process.argv[3];
 var recNum;
 var count = 0;
-
-function createBasicQ (basicFront, basicBack) {
+var cardArrayToShow = [];
+function areWeDone(start, end) {
+    if (start === end -1) {
+      for (let i = 0; i < cardArrayToShow.length; i++) {
+        cardArrayToShow[i].displayCardConsole();
+      }
+    }
+    else {
+      console.log("Not Done Yet");
+    }
+};
+function createBasicQ (basicFront, basicBack, number) {
   if ((basicFront.trim() === "") || (basicBack.trim() === "")) {
     console.log("You did not enter the correct specifications.  Try again.");
 
   }
   else {
-    var randomQ = new basicData.BasicCard(basicFront, basicBack);
-    randomQ.displayCardConsole();
+    cardArrayToShow.push(new basicData.BasicCard(basicFront, basicBack, number));
+    areWeDone(count, recNum);
+
 
   }
 };
-function createCloze (clozeFront, clozeBack) {
+function createCloze (clozeFront, clozeBack, number) {
   if ((clozeFront.trim() === "") || (clozeBack.trim() === "")) {
     console.log("You did not enter the correct specifications.  Try again.");
 
   }
   else if (clozeFront.trim().includes(clozeBack.trim())) {
-    var randomQ2 = new clozeData.ClozeCard(clozeFront, clozeBack);
-    randomQ2.displayCardConsole();
+    cardArrayToShow.push(new clozeData.ClozeCard(clozeFront, clozeBack, number));
+    areWeDone(count, recNum);
   }
   else {
     console.log("You did not enter the correct specifications.  Try again.");
