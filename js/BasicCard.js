@@ -2,6 +2,7 @@ exports.BasicCard = function (front, back) {
   this.front = front;
   this.back = back;
   this.displayCardConsole = function () {
+
     console.log (this.front);
     var count = 0;
     var secsLeft = 8;
@@ -9,7 +10,7 @@ exports.BasicCard = function (front, back) {
     function timerFun () {
 
       if (count < secsLeft) {
-        console.log(displayNumber);
+        console.log("Time Left: " + displayNumber + " seconds");
         displayNumber-= 1;
         count+= 1;
         setTimeout (function () {timerFun()}, 1000);

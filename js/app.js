@@ -12,7 +12,7 @@ function createBasicQ (basicFront, basicBack) {
 
   }
   else {
-    var randomQ =new basicData.BasicCard(basicFront, basicBack);
+    var randomQ = new basicData.BasicCard(basicFront, basicBack);
     randomQ.displayCardConsole();
 
   }
@@ -23,7 +23,8 @@ function createCloze (clozeFront, clozeBack) {
 
   }
   else if (clozeFront.trim().includes(clozeBack.trim())) {
-    var randomQ2 =new clozeData.ClozeCard(clozeFront, clozeBack);
+    var randomQ2 = new clozeData.ClozeCard(clozeFront, clozeBack);
+    randomQ2.displayCardConsole();
   }
   else {
     console.log("You did not enter the correct specifications.  Try again.");
@@ -83,7 +84,7 @@ inquirer.prompt([
         });
       }
       else {
-        console.log("All cards created");
+        console.log("");
       }
       };
 
