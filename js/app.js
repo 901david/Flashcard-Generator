@@ -7,7 +7,7 @@ var recNum;
 var count = 0;
 
 function createBasicQ (basicFront, basicBack) {
-  if ((basicFront === "") || (basicBack === "")) {
+  if ((basicFront.trim() === "") || (basicBack.trim() === "")) {
     console.log("You did not enter the correct specifications.  Try again.");
 
   }
@@ -18,13 +18,15 @@ function createBasicQ (basicFront, basicBack) {
   }
 };
 function createCloze (clozeFront, clozeBack) {
-  if ((clozeFront === undefined) || (clozeBack === undefined)) {
+  if ((clozeFront.trim() === "") || (clozeBack.trim() === "")) {
     console.log("You did not enter the correct specifications.  Try again.");
 
   }
-  else {
+  else if (clozeFront.trim().includes(clozeBack.trim())) {
     var randomQ2 =new clozeData.ClozeCard(clozeFront, clozeBack);
-
+  }
+  else {
+    console.log("You did not enter the correct specifications.  Try again.");
   }
 };
 inquirer.prompt([
