@@ -3,14 +3,35 @@ var basicData = require("./BasicCard.js");
 var inquirer = require("inquirer");
 var recNum;
 var count = 0;
-var cardArrayToShow = [];var moveOn = false;
+
+var cardArrayToShow = [];
+var moveOn = false;
 var indexMover = 0;
+exports.botMovesUsOn = function () {
+
+  inquirer.prompt([
+    {
+      type: "confirm",
+      name: "moveOn",
+      message: "Would you like to go to next card?"
+    }]).then(function(moveOnObj) {
+      var showingIndexValue = 0;
+       if (moveOnObj === true) {
+        showingIndexValue++;
+        cardArrayToShow[showingIndexValue].displayCardConsole();
+       }
+       else {
+         cardArrayToShow[showingIndexValue].displayCardConsole();
+       }
+    });
+};
 function areWeDone(start, end) {
     if (start === end -1) {
+      var showingIndexValue = 0;
+      cardArrayToShow[showingIndexValue].displayCardConsole();
 
-      for (let i = 0; i < cardArrayToShow.length; i++) {
-        cardArrayToShow[i].displayCardConsole();
-      }
+        // cardArrayToShow[i].displayCardConsole();
+
 
     }
 
