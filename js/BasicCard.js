@@ -5,9 +5,11 @@ exports.BasicCard = function (front, back) {
   var count = 0;
   var secsLeft = 8;
   var displayNumber = 8;
+  
   this.displayCardConsole = function () {
 
     console.log (this.front);
+
 
     function timerFun () {
 
@@ -20,6 +22,7 @@ exports.BasicCard = function (front, back) {
       else {
         console.log("Time's Up");
         console.log (backSavedAnswer);
+
       }
     };
     timerFun();

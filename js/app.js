@@ -3,16 +3,17 @@ var basicData = require("./BasicCard.js");
 var inquirer = require("inquirer");
 var recNum;
 var count = 0;
-var cardArrayToShow = [];
+var cardArrayToShow = [];var moveOn = false;
+var indexMover = 0;
 function areWeDone(start, end) {
     if (start === end -1) {
+
       for (let i = 0; i < cardArrayToShow.length; i++) {
         cardArrayToShow[i].displayCardConsole();
       }
+
     }
-    else {
-      console.log("Not Done Yet");
-    }
+
 };
 function createBasicQ (basicFront, basicBack, number) {
   if ((basicFront.trim() === "") || (basicBack.trim() === "")) {
