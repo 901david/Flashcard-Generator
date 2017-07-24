@@ -8,8 +8,9 @@ exports.BasicCard = function (front, back) {
   var displayNumber = 8;
 
   this.displayCardConsole = function () {
-
-    console.log (this.front);
+    count = 0;
+    displayNumber = 8;
+    console.log ("Question: " + this.front);
 
 
     function timerFun () {
@@ -22,7 +23,7 @@ exports.BasicCard = function (front, back) {
       }
       else {
         console.log("Time's Up");
-        console.log (backSavedAnswer);
+        console.log ("Answer: " + backSavedAnswer);
         requireBot.botMovesUsOn();
 
       }

@@ -7,21 +7,46 @@ var count = 0;
 var cardArrayToShow = [];
 var moveOn = false;
 var indexMover = 0;
+var showingIndexValue = 0;
 exports.botMovesUsOn = function () {
 
   inquirer.prompt([
     {
-      type: "confirm",
+      type: "list",
       name: "moveOn",
-      message: "Would you like to go to next card?"
+      message: "What would you like to do next?",
+      choices: ["Review Previous Card", "Review Current Card Again", "Move on To Next Card", "Quit and end reviewing"]
     }]).then(function(moveOnObj) {
-      var showingIndexValue = 0;
-       if (moveOnObj === true) {
-        showingIndexValue++;
-        cardArrayToShow[showingIndexValue].displayCardConsole();
+       if (moveOnObj.moveOn === "Review Previous Card") {
+          if (showingIndexValue === 0) {
+            console.log("Sorry, you are already on the first card.");
+            // Need to figrue this out
+            exports.botMovesUsOn();
+          }
+          else {
+            showingIndexValue--;
+            cardArrayToShow[showingIndexValue].displayCardConsole();
+          }
+       }
+       else if (moveOnObj.moveOn === "Review Current Card Again") {
+         cardArrayToShow[showingIndexValue].displayCardConsole();
+       }
+       else if (moveOnObj.moveOn === "Move on To Next Card") {
+         if (showingIndexValue === cardArrayToShow.length -1) {
+           console.log("That was the last card.");
+           exports.botMovesUsOn();
+         }
+         else {
+           showingIndexValue++;
+           cardArrayToShow[showingIndexValue].displayCardConsole();
+         }
+
+       }
+       else if (moveOnObj.moveOn === "Quit and end reviewing") {
+         console.log("");
        }
        else {
-         cardArrayToShow[showingIndexValue].displayCardConsole();
+         console.log("A fatal error has occurred.");
        }
     });
 };

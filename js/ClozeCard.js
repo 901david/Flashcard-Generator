@@ -1,10 +1,11 @@
 
+var requireBot = require("./app.js");
 exports.ClozeCard = function(text, cloze) {
   this.fullAnswer = text;
   this.removedPortion = cloze;
   this.displayCardConsole = function () {
     var winnerText = this.fullAnswer;
-    console.log (this.displayText);
+    console.log ("Question: " + this.displayText);
     var count = 0;
     var secsLeft = 8;
     var displayNumber = 8;
@@ -18,8 +19,8 @@ exports.ClozeCard = function(text, cloze) {
       }
       else {
         console.log("Time's Up");
-        console.log (winnerText)
-
+        console.log ("Answer: " + winnerText)
+        requireBot.botMovesUsOn();
         }
 
     };
