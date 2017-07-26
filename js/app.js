@@ -50,25 +50,72 @@ exports.botMovesUsOn = function () {
        }
     });
 };
+function askQuestion () {
+
+  if (count < recNum) {
+
+  inquirer.prompt([
+    {
+      type: "list",
+      name: "type",
+      message: "What type of Flashcard do you want to create?",
+      choices: ["Basic Card", "Cloze Card"]
+    }]).then(function(carTypeObj) {
+      cardType = carTypeObj.type;
+
+      if (cardType === "Cloze Card"){
+        inquirer.prompt([
+          {
+            name: "frontCardCloze",
+            message: "What should the Question be?"
+          }, {
+            name: "backCardCloze",
+            message: "What part do you want to remove? (Must match exactly)"
+          }]).then(function(cardDataClozeObj) {
+            createCloze(cardDataClozeObj.frontCardCloze, cardDataClozeObj.backCardCloze);
+
+
+          });
+      }
+      else {
+        inquirer.prompt([
+          {
+            name: "frontCardBasic",
+            message: "What should the Question be?"
+          }, {
+            name: "backCardBasic",
+            message: "What should the answer be?"
+          }]).then(function(cardDataBasicObj) {
+              createBasicQ(cardDataBasicObj.frontCardBasic, cardDataBasicObj.backCardBasic);
+
+          });
+      }
+
+
+    });
+  }
+  else {
+    console.log("");
+  }
+  };
 function areWeDone(start, end) {
-    if (start === end -1) {
+    if (start > end -1) {
       var showingIndexValue = 0;
       cardArrayToShow[showingIndexValue].displayCardConsole();
-
-        // cardArrayToShow[i].displayCardConsole();
-
-
     }
 
 };
 function createBasicQ (basicFront, basicBack, number) {
   if ((basicFront.trim() === "") || (basicBack.trim() === "")) {
     console.log("You did not enter the correct specifications.  Try again.");
+    askQuestion();
 
   }
   else {
     cardArrayToShow.push(new basicData.BasicCard(basicFront, basicBack, number));
+    count++;
     areWeDone(count, recNum);
+    askQuestion();
 
 
   }
@@ -76,14 +123,17 @@ function createBasicQ (basicFront, basicBack, number) {
 function createCloze (clozeFront, clozeBack, number) {
   if ((clozeFront.trim() === "") || (clozeBack.trim() === "")) {
     console.log("You did not enter the correct specifications.  Try again.");
-
+    askQuestion();
   }
   else if (clozeFront.trim().includes(clozeBack.trim())) {
     cardArrayToShow.push(new clozeData.ClozeCard(clozeFront, clozeBack, number));
+    count++;
     areWeDone(count, recNum);
+    askQuestion();
   }
   else {
     console.log("You did not enter the correct specifications.  Try again.");
+    askQuestion();
   }
 };
 inquirer.prompt([
@@ -92,57 +142,5 @@ inquirer.prompt([
     message: "How many cards total do you want to make?"
   }]).then(function(carNumObj) {
     recNum = carNumObj.cardNumber;
-
-    function askQuestion () {
-
-      if (count < recNum) {
-
-      inquirer.prompt([
-        {
-          type: "list",
-          name: "type",
-          message: "What type of Flashcard do you want to create?",
-          choices: ["Basic Card", "Cloze Card"]
-        }]).then(function(carTypeObj) {
-          cardType = carTypeObj.type;
-
-          if (cardType === "Cloze Card"){
-            inquirer.prompt([
-              {
-                name: "frontCardCloze",
-                message: "What should the Question be?"
-              }, {
-                name: "backCardCloze",
-                message: "What part do you want to remove? (Must match exactly)"
-              }]).then(function(cardDataClozeObj) {
-                createCloze(cardDataClozeObj.frontCardCloze, cardDataClozeObj.backCardCloze);
-                count++;
-                askQuestion();
-
-              });
-          }
-          else {
-            inquirer.prompt([
-              {
-                name: "frontCardBasic",
-                message: "What should the Question be?"
-              }, {
-                name: "backCardBasic",
-                message: "What should the answer be?"
-              }]).then(function(cardDataBasicObj) {
-                  createBasicQ(cardDataBasicObj.frontCardBasic, cardDataBasicObj.backCardBasic);
-                  count++;
-                  askQuestion();
-              });
-          }
-
-
-        });
-      }
-      else {
-        console.log("");
-      }
-      };
-
         askQuestion();
     });
